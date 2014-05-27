@@ -10,6 +10,16 @@ namespace Tarea2_evolutiva
     {
         static void Main(string[] args)
         {
+            Data data = Data.GetInstance();
+
+            if(args.Length > 0)
+                Config.ReadConfig(args[0]);
+            
+            Config.PrintConfig();
+
+            
+
+            Console.ReadKey();
         }
     }
 }
