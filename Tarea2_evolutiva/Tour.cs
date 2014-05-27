@@ -45,6 +45,9 @@ namespace Tarea2_evolutiva
             return string.Join(" ", tour);
         }
 
+        /// <summary>
+        /// Retorna el número de ciudades del tour
+        /// </summary>
         public int Count
         {
             get
@@ -53,10 +56,42 @@ namespace Tarea2_evolutiva
             }
         }
 
+        /// <summary>
+        /// Retorna el índice de la ciudad <b>city</b> en el tour
+        /// </summary>
+        /// <param name="city">Ciudad a buscar</param>
+        /// <returns>índice de la ciudad en el tour</returns>
         public int IndexOf(int city)
         {
             return tour.IndexOf(city);
         }
+
+        /// <summary>
+        /// Implementación del operador de mutación por orden "Intercambio recíprocro"
+        /// </summary>
+        private void ReciprocalExchange()
+        {
+            int idx1 = RandomUtils.RandomInt(0, Count);
+            int idx2 = RandomUtils.RandomInt(0, Count);
+            int temp = this[idx1];
+            this[idx1] = this[idx2];
+            this[idx2] = temp;
+        }
+
+        /// <summary>
+        /// Realiza mutación del individuo
+        /// </summary>
+        public void Mutate()
+        {
+            this.ReciprocalExchange();
+        }
+
+        /// <summary>
+        /// Operación de crossover entre dos tours cualesquiera <b>t1</b> y <b>t2</b>.
+        /// </summary>
+        /// <param name="t1">Primer Tour</param>
+        /// <param name="t2">Segundo Tour</param>
+        /// <returns>CrossoverResult que contiene a los hijos del crossover entre <b>t1</b> y <b>t2</b></returns>
 
         public static CrossoverResult Crossover(Tour t1, Tour t2)
         {

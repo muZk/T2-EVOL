@@ -18,7 +18,7 @@ namespace Tarea2_evolutiva
 
         public static int RandomCity()
         {
-            return random.Next(1, 20);
+            return random.Next(1, 21);
         }
 
 
