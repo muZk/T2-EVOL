@@ -87,6 +87,36 @@ namespace Tarea2_evolutiva
         }
 
         /// <summary>
+        /// Obtiene el fitness del tour de acuerdo a la dificultad
+        /// </summary>
+        /// <returns>Fitness de dificultad</returns>
+        public int GetFitnessDifficult()
+        {
+            int fitness = 0;
+            // De C1 -> ... -> C20
+            for (int i = 0; i < Count - 1; i++)
+                fitness += Data.GetInstance().GetDifficulty(this[i], this[i + 1]);
+            // De C20 -> C1
+            fitness += Data.GetInstance().GetDifficulty(Count - 1, 0);
+            return fitness;
+        }
+
+        /// <summary>
+        /// Obtiene el fitness del tour de acuerdo a la distancia
+        /// </summary>
+        /// <returns>Fitness de distancia</returns>
+        public int GetFinessDistance()
+        {
+            int fitness = 0;
+            // De C1 -> ... -> C20
+            for (int i = 0; i < Count - 1; i++)
+                fitness += Data.GetInstance().GetDistance(this[i], this[i + 1]);
+            // De C20 -> C1
+            fitness += Data.GetInstance().GetDistance(Count - 1, 0);
+            return fitness;
+        }
+
+        /// <summary>
         /// Operación de crossover entre dos tours cualesquiera <b>t1</b> y <b>t2</b>.
         /// </summary>
         /// <param name="t1">Primer Tour</param>
@@ -160,6 +190,10 @@ namespace Tarea2_evolutiva
                 cities.Add(city);
             return cities;
         }
+
+
+
+
 
     }
 }

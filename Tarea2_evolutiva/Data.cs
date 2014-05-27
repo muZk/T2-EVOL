@@ -14,7 +14,7 @@ namespace Tarea2_evolutiva
     class Data
     {
 
-        private const string _dificultyString = 
+        private const string _difficultyString = 
             "0	5	0	10	0	5	0	10	0	10	5	0	0	10	0	5	0	10	0	5\n" +
             "	0	0	0	5	0	10	0	0	5	0	10	0	0	5	0	10	0	5	5\n" +
             "		0	0	10	0	5	0	0	10	0	5	0	0	10	0	5	0	0	10\n" +
@@ -58,14 +58,14 @@ namespace Tarea2_evolutiva
             "																		0	56\n" +
             "																			0";
 
-        public int[,] dificulty;
+        public int[,] difficulty;
         public int[,] distance;
 
         private static Data instance;
 
         private Data()
         {
-            dificulty = GenerateMatrix(_dificultyString);
+            difficulty = GenerateMatrix(_difficultyString);
             distance = GenerateMatrix(_distanceString);
         }
 
@@ -94,6 +94,16 @@ namespace Tarea2_evolutiva
             if (instance == null)
                 instance = new Data();
             return instance;
+        }
+
+        public int GetDistance(int city1, int city2)
+        {
+            return distance[city1 - 1, city2 - 1];
+        }
+
+        public int GetDifficulty(int city1, int city2)
+        {
+            return difficulty[city1 - 1, city2 - 1];
         }
 
     }
