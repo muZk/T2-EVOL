@@ -10,9 +10,9 @@ namespace Tarea2_evolutiva
     /// Esta clase es para guardar el resultado de un crossover
     /// </summary>
 
-    struct Offspring
+    struct CrossoverResult
     {
-        Tour offspring1;
-        Tour offspring2;
+        public Tour offspring1;
+        public Tour offspring2;
     }
 }

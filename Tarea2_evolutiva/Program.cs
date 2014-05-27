@@ -17,8 +17,6 @@ namespace Tarea2_evolutiva
             
             Config.PrintConfig();
 
-            
-
             Console.ReadKey();
         }
     }

@@ -16,6 +16,11 @@ namespace Tarea2_evolutiva
             return random.Next(minValue, maxValue);
         }
 
+        public static int RandomCity()
+        {
+            return random.Next(1, 20);
+        }
+
 
     }
 }
