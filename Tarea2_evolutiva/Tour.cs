@@ -32,6 +32,16 @@ namespace Tarea2_evolutiva
 
         }
 
+        public Tour(Tour t)
+        {
+            // Copiar ciudades
+            foreach (int city in t.tour)
+                tour.Add(city);
+            // Copiar fitness
+            difficultyFitness = t.difficultyFitness;
+            distanceFitness = t.distanceFitness;
+        }
+
         public int this[int key]
         {
             get
@@ -94,14 +104,14 @@ namespace Tarea2_evolutiva
         /// Obtiene el fitness del tour de acuerdo a la dificultad
         /// </summary>
         /// <returns>Fitness de dificultad</returns>
-        private int EvaluateFitnessDistance()
+        private int EvaluateFitnessDifficulty()
         {
             int fitness = 0;
             // De C1 -> ... -> C20
             for (int i = 0; i < Count - 1; i++)
                 fitness += Data.GetInstance().GetDifficulty(this[i], this[i + 1]);
             // De C20 -> C1
-            fitness += Data.GetInstance().GetDifficulty(Count - 1, 0);
+            fitness += Data.GetInstance().GetDifficulty(Count, 1);
             return fitness;
         }
 
@@ -116,7 +126,7 @@ namespace Tarea2_evolutiva
             for (int i = 0; i < Count - 1; i++)
                 fitness += Data.GetInstance().GetDistance(this[i], this[i + 1]);
             // De C20 -> C1
-            fitness += Data.GetInstance().GetDistance(Count - 1, 0);
+            fitness += Data.GetInstance().GetDistance(Count, 1);
             return fitness;
         }
 
@@ -133,6 +143,7 @@ namespace Tarea2_evolutiva
             CrossoverResult crossover = new CrossoverResult();
             crossover.offspring1 = Pmx(t1, t2, randomCity);
             crossover.offspring2 = Pmx(t2, t1, randomCity);
+
             return crossover;
         }
 
@@ -183,6 +194,19 @@ namespace Tarea2_evolutiva
         }
 
         /// <summary>
+        /// Verifica si el tour es dominado por un tour <b>t</b>
+        /// </summary>
+        /// <param name="t">Tour a comparar</param>
+        /// <returns><b>true</b> si <b>t</b> domina al tour</returns>
+        public bool dominatedBy(Tour t)
+        {
+            bool condition1 = t.difficultyFitness < difficultyFitness && t.distanceFitness <= distanceFitness;
+            bool condition2 = t.difficultyFitness <= difficultyFitness && t.distanceFitness < distanceFitness;
+
+            return condition1 || condition2;
+        }
+
+        /// <summary>
         /// Devuelve una lista con las ciudades del 1 al 20
         /// </summary>
         /// <returns>Lista con números del 1 al 20</returns>
@@ -195,9 +219,13 @@ namespace Tarea2_evolutiva
             return cities;
         }
 
+        /// <summary>
+        /// Calcula el valor del fitness para ambos objetivos
+        /// </summary>
+
         public void Evaluate()
         {
-            difficultyFitness = EvaluateFitnessDistance();
+            difficultyFitness = EvaluateFitnessDifficulty();
             distanceFitness = EvaluateFinessDistance();
         }
     }

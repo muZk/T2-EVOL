@@ -45,6 +45,8 @@
     <Compile Include="Data.cs" />
     <Compile Include="CrossoverResult.cs" />
     <Compile Include="GeneticAlgorithm.cs" />
+    <Compile Include="IMultipleObjetiveGA.cs" />
+    <Compile Include="NSGA.cs" />
     <Compile Include="Population.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,6 +17,10 @@ namespace Tarea2_evolutiva
             
             Config.PrintConfig();
 
+            new GeneticAlgorithm().Start();
+
+           
+
             Console.ReadKey();
         }
     }

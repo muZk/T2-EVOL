@@ -37,7 +37,14 @@ namespace Tarea2_evolutiva
 
         private void Selection()
         {
-            throw new NotImplementedException();
+            IMultipleObjetiveGA ga = new NSGA(currentPopulation);
+            Population nextPopulation = ga.NextPopulation();
+
+            currentPopulation.elite = ga.Elite();
+            currentPopulation.Print();
+
+            currentPopulation = nextPopulation;
+            populations.Add(currentPopulation);
         }
 
         private void Evaluate()
@@ -57,7 +64,7 @@ namespace Tarea2_evolutiva
 
         private void PrintSolution()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void CreateInitialPopulation()

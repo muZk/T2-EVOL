@@ -14,26 +14,41 @@ namespace Tarea2_evolutiva
     class Population
     {
 
-        private List<Tour> tours;
+        private List<Tour> _tours;
+        private List<Tour> _elite;
         
         /// <summary>
         /// Constructor para la población inicial
         /// </summary>
         public Population()
         {
-            tours = new List<Tour>(Config.poblacion);
+            _tours = new List<Tour>(Config.poblacion);
 
             for (int i = 0; i < Config.poblacion; i++)
-                tours.Add(new Tour());
+                _tours.Add(new Tour());
 
         }
+
+        public Population(Population population)
+        { 
+            _tours = new List<Tour>(Config.poblacion);
+
+            foreach (Tour t in population.tours)
+                _tours.Add(new Tour(t));
+        }
+
+        public Population(List<Tour> tours)
+        {
+            _tours = tours;
+        }
+
 
         /// <summary>
         /// Evalua a todos los tours de la población
         /// </summary>
         public void Evaluate()
         {
-            foreach(Tour tour in tours)
+            foreach(Tour tour in _tours)
                 tour.Evaluate();
         }
 
@@ -42,12 +57,40 @@ namespace Tarea2_evolutiva
         /// </summary>
         public void Mutate()
         {
-            foreach (Tour tour in tours)
+            foreach (Tour tour in _tours)
                 if(RandomUtils.EvaluateMutationEvent())
                     tour.Mutate();
         }
 
+        public Tour RandomTour()
+        { 
+            return _tours[RandomUtils.RandomInt(0, 20)];
+        }
 
+        public void Add(Tour t)
+        {
+            _tours.Add(t);
+        }
 
+        public Tour Get(int index)
+        {
+            return _tours[index];
+        }
+
+        public int Count { get { return _tours.Count; } }
+
+        public List<Tour> tours { get { return _tours; } }
+        public List<Tour> elite { get { return _elite; } set { _elite = value; } }
+
+        public void Print()
+        {
+
+            Console.WriteLine("Rutas equivalentes:");
+
+            foreach (Tour tour in elite)
+            {
+                Console.WriteLine(tour.ToString() + " DIFF: " + tour.difficultyFitness + " DIST: " + tour.distanceFitness);
+            }
+        }
     }
 }

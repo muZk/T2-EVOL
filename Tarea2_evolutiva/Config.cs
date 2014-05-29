@@ -50,7 +50,7 @@ namespace Tarea2_evolutiva
                 case "Mutacion":
                     Config.mutacion = double.Parse(value);
                     break;
-                case "Alpha":
+                case "Alfa":
                     Config.alpha = int.Parse(value.Replace(".", ""));
                     break;
                 default:
