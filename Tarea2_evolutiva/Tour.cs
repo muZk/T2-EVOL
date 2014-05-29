@@ -15,6 +15,10 @@ namespace Tarea2_evolutiva
     {
         private List<int> tour = new List<int>(20);
 
+        public int distanceFitness { get; set; }
+
+        public int difficultyFitness { get; set; }
+
         public Tour()
         {
             List<int> cities = GetCityList();
@@ -90,7 +94,7 @@ namespace Tarea2_evolutiva
         /// Obtiene el fitness del tour de acuerdo a la dificultad
         /// </summary>
         /// <returns>Fitness de dificultad</returns>
-        public int GetFitnessDifficult()
+        private int EvaluateFitnessDistance()
         {
             int fitness = 0;
             // De C1 -> ... -> C20
@@ -105,7 +109,7 @@ namespace Tarea2_evolutiva
         /// Obtiene el fitness del tour de acuerdo a la distancia
         /// </summary>
         /// <returns>Fitness de distancia</returns>
-        public int GetFinessDistance()
+        private int EvaluateFinessDistance()
         {
             int fitness = 0;
             // De C1 -> ... -> C20
@@ -191,9 +195,10 @@ namespace Tarea2_evolutiva
             return cities;
         }
 
-
-
-
-
+        public void Evaluate()
+        {
+            difficultyFitness = EvaluateFitnessDistance();
+            distanceFitness = EvaluateFinessDistance();
+        }
     }
 }

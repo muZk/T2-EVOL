@@ -28,6 +28,25 @@ namespace Tarea2_evolutiva
 
         }
 
+        /// <summary>
+        /// Evalua a todos los tours de la población
+        /// </summary>
+        public void Evaluate()
+        {
+            foreach(Tour tour in tours)
+                tour.Evaluate();
+        }
+
+        /// <summary>
+        /// Muta a todos los tours de la población, según la probabilidad de mutación
+        /// </summary>
+        public void Mutate()
+        {
+            foreach (Tour tour in tours)
+                if(RandomUtils.EvaluateMutationEvent())
+                    tour.Mutate();
+        }
+
 
 
     }

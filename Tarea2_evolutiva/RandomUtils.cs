@@ -16,6 +16,16 @@ namespace Tarea2_evolutiva
             return random.Next(minValue, maxValue);
         }
 
+        public static bool EvaluateMutationEvent()
+        {
+            return random.NextDouble() <= Config.mutacion;
+        }
+
+        public static bool EvaluateCrossoverEvent()
+        {
+            return random.NextDouble() <= Config.crossover;
+        }
+
         public static int RandomCity()
         {
             return random.Next(1, 21);
