@@ -101,7 +101,7 @@ namespace Tarea2_evolutiva
             return distance[city1 - 1, city2 - 1];
         }
 
-        public int GetDifficulty(int city1, int city2)
+        public int GetRisk(int city1, int city2)
         {
             return difficulty[city1 - 1, city2 - 1];
         }

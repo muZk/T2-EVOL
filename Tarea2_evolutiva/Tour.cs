@@ -109,9 +109,9 @@ namespace Tarea2_evolutiva
             int fitness = 0;
             // De C1 -> ... -> C20
             for (int i = 0; i < Count - 1; i++)
-                fitness += Data.GetInstance().GetDifficulty(this[i], this[i + 1]);
+                fitness += Data.GetInstance().GetRisk(this[i], this[i + 1]);
             // De C20 -> C1
-            fitness += Data.GetInstance().GetDifficulty(Count, 1);
+            fitness += Data.GetInstance().GetRisk(Count, 1);
             return fitness;
         }
 

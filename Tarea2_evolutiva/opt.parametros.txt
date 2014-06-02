@@ -1,5 +1,5 @@
-﻿Generaciones = 1000
-Poblacion = 30
+﻿Generaciones = 2000
+Poblacion = 100
 Crossover = 0,8
-Mutacion = 0,7
-Alfa = 3
+Mutacion = 0,5
+Alfa = 2

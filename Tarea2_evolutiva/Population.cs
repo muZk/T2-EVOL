@@ -85,12 +85,29 @@ namespace Tarea2_evolutiva
         public void Print()
         {
 
-            Console.WriteLine("Rutas equivalentes:");
+            Console.WriteLine("Posibles rutas a seguir (equivalentes):");
 
             foreach (Tour tour in elite)
             {
-                Console.WriteLine(tour.ToString() + " DIFF: " + tour.difficultyFitness + " DIST: " + tour.distanceFitness);
+                Console.WriteLine(tour.ToString() + " Risk: " + tour.difficultyFitness + " Distance: " + tour.distanceFitness);
             }
         }
+
+        public void PrintInFile()
+        {
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("rutas.out"))
+            {
+                foreach (Tour tour in elite)
+                {
+                    file.WriteLine(tour.ToString() + " [ Risk = "+ tour.difficultyFitness +" , Distance = "+ tour.distanceFitness +" ] ");
+                }
+
+                file.Close();
+            }
+        }
+
+
+
     }
 }

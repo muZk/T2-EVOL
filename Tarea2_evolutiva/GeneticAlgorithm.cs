@@ -16,23 +16,16 @@ namespace Tarea2_evolutiva
 
         private List<Population> populations = new List<Population>();
         private Population currentPopulation;
-
-
-        public void Repeat()
+        
+        private void Repeat()
         {
             do
             {
-                Console.WriteLine("\n");
-                Console.WriteLine("### Generación {0}", populations.Count);
                 Evaluate();
                 Selection();
                 Mutation();
+                PrintProgress();
             } while (populations.Count <= Config.generaciones);
-        }
-
-        private void Mutation()
-        {
-            currentPopulation.Mutate();
         }
 
         private void Selection()
@@ -41,7 +34,8 @@ namespace Tarea2_evolutiva
             Population nextPopulation = ga.NextPopulation();
 
             currentPopulation.elite = ga.Elite();
-            currentPopulation.Print();
+            //currentPopulation.Print();
+            
 
             currentPopulation = nextPopulation;
             populations.Add(currentPopulation);
@@ -50,6 +44,11 @@ namespace Tarea2_evolutiva
         private void Evaluate()
         {
             currentPopulation.Evaluate();
+        }
+
+        private void Mutation()
+        {
+            currentPopulation.Mutate();
         }
 
         /// <summary>
@@ -64,13 +63,23 @@ namespace Tarea2_evolutiva
 
         private void PrintSolution()
         {
-            //throw new NotImplementedException();
+            Console.WriteLine("\nGenerando rutas.out...");
+            populations[populations.Count - 2].PrintInFile();
+            Console.WriteLine("\nImprimiendo solución en consola...\n");
+            populations[populations.Count - 2].Print();
         }
 
         private void CreateInitialPopulation()
         {
             currentPopulation = new Population();
             populations.Add(currentPopulation);
+        }
+
+        private void PrintProgress()
+        {
+            Console.Clear();
+            Config.PrintConfig();
+            Console.WriteLine("Progreso: "+100*populations.Count/Config.generaciones + "%");
         }
 
     }
