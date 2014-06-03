@@ -56,7 +56,10 @@ namespace Tarea2_evolutiva
 
         public override string ToString()
         {
-            return string.Join(" ", tour);
+            string[] names = new string[20];
+            for (int i = 0; i < tour.Count; i++)
+                names[i] = "C"+tour[i];
+            return string.Join(" -> ", names);
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿Generaciones = 2000
+﻿Generaciones = 3
 Poblacion = 100
 Crossover = 0,8
 Mutacion = 0,5

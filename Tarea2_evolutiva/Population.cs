@@ -99,12 +99,17 @@ namespace Tarea2_evolutiva
             using (System.IO.StreamWriter file = new System.IO.StreamWriter("rutas.out"))
             {
                 foreach (Tour tour in elite)
-                {
-                    file.WriteLine(tour.ToString() + " [ Risk = "+ tour.difficultyFitness +" , Distance = "+ tour.distanceFitness +" ] ");
-                }
-
+                    file.WriteLine(tour.ToString());
                 file.Close();
             }
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("rutas_con_fo.out"))
+            {
+                foreach (Tour tour in elite)
+                    file.WriteLine(tour.ToString() + " [ Risk = " + tour.difficultyFitness + " , Distance = " + tour.distanceFitness + " ] ");
+                file.Close();
+            }
+            
         }
 
 

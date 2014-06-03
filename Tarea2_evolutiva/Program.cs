@@ -12,6 +12,8 @@ namespace Tarea2_evolutiva
         {
             Data data = Data.GetInstance();
 
+            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+
             if(args.Length > 0)
                 Config.ReadConfig(args[0]);
             
